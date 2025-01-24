@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import Axios from "axios";
-import "./editor.css"
+import "./editor.css";
 import spinner from "./spinner.svg";
 
 function Eeditor() {
@@ -15,7 +15,7 @@ function Eeditor() {
   const options = {
     fontSize: 20,
   };
- 
+
   function compile() {
     setLoading(true);
     if (userCode === ``) {

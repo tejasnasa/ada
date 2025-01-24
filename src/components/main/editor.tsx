@@ -1,42 +1,31 @@
 "use client";
 
 import { Editor } from "@monaco-editor/react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { useCompilerStore } from "@/context/compiler-context";
+import { Sidebar } from "@/components/main/sidebar";
 import EditorSkeleton from "./editor-skeleton";
-import { Sidebar } from "./sidebar";
 
-interface EditorBlockProps {
-  compile: () => void;
-  setUserCode: any;
-}
+export default function EditorBlock() {
+  const { userCode, setUserCode, compileCode } = useCompilerStore();
 
-export default function EditorBlock({
-  compile,
-  setUserCode,
-}: EditorBlockProps) {
   return (
-    <section className="w-[70%] h-[100%] flex flex-col items-end relative ">
+    <div className="relative w-full h-full">
       <Editor
         options={{ fontSize: 20 }}
         width="100%"
-        loading={<EditorSkeleton />}
-        className="bg-red"
         height="100%"
         theme="vs-dark"
         language="cpp"
         defaultLanguage="cpp"
-        defaultValue="# Enter your code here"
-        onChange={(value) => {
-          setUserCode(value);
-        }}
+        value={userCode}
+        loading={<EditorSkeleton />}
+        onChange={(value) => setUserCode(value || "")}
       />
       <Sidebar />
-      <Button
-        className="absolute bottom-4 right-6 z-2"
-        onClick={() => compile()}
-      >
+      <Button className="absolute bottom-4 right-6 z-10" onClick={compileCode}>
         Submit
       </Button>
-    </section>
+    </div>
   );
 }
