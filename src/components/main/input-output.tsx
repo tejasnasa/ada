@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { ScrollArea } from "../ui/scroll-area";
 import { Textarea } from "../ui/textarea";
+import OutputSkeleton from "./output-skeleton";
 
 const output = `Hello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorld`;
 
@@ -31,8 +33,10 @@ export default function InputOutput() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[275px] rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background">
-            <pre>{output}</pre>
+          <ScrollArea className="h-[275px] rounded-md border border-input bg-background px-3 py-3 text-base ring-offset-background">
+            <Suspense fallback={<OutputSkeleton/>}>
+              <pre>{output}</pre>
+            </Suspense>
           </ScrollArea>
         </CardContent>
       </Card>
