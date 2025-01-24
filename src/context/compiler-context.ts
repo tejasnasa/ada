@@ -1,6 +1,13 @@
 import Axios from "axios";
 import { create } from "zustand";
 
+const defaultValue = `#include <iostream>
+using namespace std;
+
+int main(){
+
+}`
+
 interface CompilerState {
   userCode: string;
   userInput: string;
@@ -17,7 +24,7 @@ interface CompilerState {
 }
 
 export const useCompilerStore = create<CompilerState>((set, get) => ({
-  userCode: "// Enter your code here",
+  userCode: defaultValue,
   userInput: "",
   userOutput: {
     code: "",

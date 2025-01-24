@@ -18,7 +18,7 @@ export function Sidebar() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button size="icon" variant="outline" className="absolute bottom-4 right-28 z-2 bg-transparent border-transparent">
+        <Button size="icon" variant="outline" className="absolute bottom-2 left-2 z-2 bg-transparent border-transparent">
           <Image src={image} alt="settings"/>
         </Button>
       </SheetTrigger>

@@ -23,6 +23,12 @@ export default function EditorBlock() {
         onChange={(value) => setUserCode(value || "")}
       />
       <Sidebar />
+      <Button
+        className="absolute bottom-4 right-28 z-10 bg-black hover:bg-gray-900 text-white"
+        onClick={(value) => setUserCode("")}
+      >
+        Clear
+      </Button>
       <Button className="absolute bottom-4 right-6 z-10" onClick={compileCode}>
         Submit
       </Button>

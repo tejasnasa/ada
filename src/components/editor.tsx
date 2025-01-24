@@ -6,6 +6,8 @@ import Axios from "axios";
 import "./editor.css";
 import spinner from "./spinner.svg";
 
+
+
 function Eeditor() {
   const [userCode, setUserCode] = useState<string | undefined>(``);
   const [userInput, setUserInput] = useState("");
@@ -57,7 +59,6 @@ function Eeditor() {
             theme="vs-dark"
             language="cpp"
             defaultLanguage="cpp"
-            defaultValue="# Enter your code here"
             onChange={(value) => {
               setUserCode(value);
             }}
