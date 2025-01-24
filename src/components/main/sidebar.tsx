@@ -13,21 +13,23 @@ import {
 } from "@/components/ui/sheet";
 import image from "@/assets/settings.svg";
 import Image from "next/image";
+import { Slider } from "../ui/slider";
 
 export function Sidebar() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button size="icon" variant="outline" className="absolute bottom-2 left-2 z-2 bg-transparent border-transparent">
-          <Image src={image} alt="settings"/>
+        <Button
+          size="icon"
+          variant="outline"
+          className="absolute bottom-2 left-2 z-2 bg-transparent border-transparent"
+        >
+          <Image src={image} alt="settings" />
         </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
-          <SheetDescription>
-            Make changes to your profile here. Click save when youre done.
-          </SheetDescription>
+          <SheetTitle className="text-2xl">Settings</SheetTitle>
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -41,6 +43,10 @@ export function Sidebar() {
               Username
             </Label>
             <Input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="slider">Font size</Label>
+            <Slider id="slider" />
           </div>
         </div>
         <SheetFooter>
