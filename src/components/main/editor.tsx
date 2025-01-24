@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import { useCompilerStore } from "@/context/compiler-context";
 import copy from "@/assets/copy.svg";
 import EditorSkeleton from "./editor-skeleton";
-import { DialogDemo } from "@/components/main/dialog";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
+import { Sidebar } from "./sidebar";
 
 export default function EditorBlock() {
-  const { userCode, setUserCode, compileCode } = useCompilerStore();
+  const { userCode, setUserCode, compileCode, theme, font } =
+    useCompilerStore();
   const { toast } = useToast();
 
   const copyToClipboard = () => {
@@ -27,24 +28,27 @@ export default function EditorBlock() {
           alert("Failed to copy code. Please try again.");
         });
     } else {
-      alert("Nothing to copy!");
+      toast({
+        title: "Nothing to copy!",
+        duration: 2000,
+      });
     }
   };
 
   return (
     <div className="relative w-full h-full">
       <Editor
-        options={{ fontSize: 20 }}
+        options={{ fontSize: font }}
         width="100%"
         height="100%"
-        theme="vs-dark"
+        theme={theme}
         language="cpp"
         defaultLanguage="cpp"
         value={userCode}
         loading={<EditorSkeleton />}
         onChange={(value) => setUserCode(value || "")}
       />
-      <DialogDemo />
+      <Sidebar />
 
       <Button
         className="absolute bottom-4 right-40 z-10 bg-black hover:bg-gray-900 text-white"

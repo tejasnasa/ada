@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
 
-}`
+}`;
 
 interface CompilerState {
   userCode: string;
@@ -15,12 +15,16 @@ interface CompilerState {
     code: string;
     isError: boolean;
   };
+  theme: "vs" | "vs-dark" | "hc-black" | "hc-light";
   loading: boolean;
+  font: number;
   setUserCode: (code: string) => void;
   setUserInput: (input: string) => void;
   setUserOutput: (output: { code: string; isError: boolean }) => void;
   setLoading: (loading: boolean) => void;
   compileCode: () => Promise<void>;
+  setTheme: (theme: "vs" | "vs-dark" | "hc-black" | "hc-light") => void;
+  setFont: (value: number) => void;
 }
 
 export const useCompilerStore = create<CompilerState>((set, get) => ({
@@ -31,11 +35,15 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
     isError: false,
   },
   loading: false,
+  theme: "vs-dark",
+  font: 20,
 
   setUserCode: (code) => set({ userCode: code }),
   setUserInput: (input) => set({ userInput: input }),
   setUserOutput: (output) => set({ userOutput: output }),
   setLoading: (loading) => set({ loading }),
+  setTheme: (theme) => set({ theme }),
+  setFont: (value) => set({ font: value }),
 
   compileCode: async () => {
     const { userCode, userInput, setUserOutput, setLoading } = get();

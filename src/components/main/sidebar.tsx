@@ -5,7 +5,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -14,8 +13,12 @@ import {
 import image from "@/assets/settings.svg";
 import Image from "next/image";
 import { Slider } from "../ui/slider";
+import Dropdown from "./themechanger";
+import { useCompilerStore } from "@/context/compiler-context";
 
 export function Sidebar() {
+  const { font, setFont } = useCompilerStore();
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -32,21 +35,31 @@ export function Sidebar() {
           <SheetTitle className="text-2xl">Settings</SheetTitle>
         </SheetHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
+          <div className="grid grid-cols-4 items-center gap-4 w-[100%]">
+            <Label htmlFor="slider" className="text-right">
+              Font size
             </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            <Slider
+              id="slider"
+              className="w-56"
+              value={[font]}
+              max={50}
+              min={10}
+              step={1}
+              onValueChange={([newValue]) => setFont(newValue)}
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
+            <Label htmlFor="slider" className="text-right">
+              Theme
             </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
+            <Dropdown />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="slider">Font size</Label>
-            <Slider id="slider" />
+            <Label htmlFor="slider" className="text-right">
+              Type
+            </Label>
+            <Dropdown />
           </div>
         </div>
         <SheetFooter>
