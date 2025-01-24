@@ -35,16 +35,28 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
 
     setLoading(true);
     try {
-      const res = await Axios.post(`http://localhost:8000/compile`, {
-        code: userCode,
-        language: "c++",
-        input: userInput,
-      });
+      const config = {
+        method: "post",
+        url: "https://emkc.org/api/v2/piston/execute",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          language: "c++",
+          version: "10.2.0",
+          files: [{ name: "main", content: userCode }],
+        },
+        stdin: userInput,
+      };
+
+      const res = await Axios(config);
 
       const data = {
-        code: res.data.stdout || res.data.stderr,
-        isError: res.data.stderr ? true : false,
+        code: res.data.run.stdout || res.data.run.stderr,
+        isError: res.data.run.stderr ? true : false,
       };
+
+      console.log(res.data.run);
 
       setUserOutput(data);
     } catch (error) {
