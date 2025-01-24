@@ -8,13 +8,12 @@ import spinner from "./spinner.svg";
 
 function Eeditor() {
   const [userCode, setUserCode] = useState<string | undefined>(``);
-  const [fontSize, setFontSize] = useState(20);
   const [userInput, setUserInput] = useState("");
   const [userOutput, setUserOutput] = useState("");
   const [loading, setLoading] = useState(false);
 
   const options = {
-    fontSize: fontSize,
+    fontSize: 20,
   };
 
   function compile() {
