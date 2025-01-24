@@ -45,8 +45,8 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
           language: "c++",
           version: "10.2.0",
           files: [{ name: "main", content: userCode }],
+          stdin: userInput,
         },
-        stdin: userInput,
       };
 
       const res = await Axios(config);
@@ -55,8 +55,6 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
         code: res.data.run.stdout || res.data.run.stderr,
         isError: res.data.run.stderr ? true : false,
       };
-
-      console.log(res.data.run);
 
       setUserOutput(data);
     } catch (error) {
