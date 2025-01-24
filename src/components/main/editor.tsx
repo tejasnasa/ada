@@ -5,7 +5,15 @@ import { Button } from "../ui/button";
 import EditorSkeleton from "./editor-skeleton";
 import { Sidebar } from "./sidebar";
 
-export default function EditorBlock() {
+interface EditorBlockProps {
+  compile: () => void;
+  setUserCode: any;
+}
+
+export default function EditorBlock({
+  compile,
+  setUserCode,
+}: EditorBlockProps) {
   return (
     <section className="w-[70%] h-[100%] flex flex-col items-end relative ">
       <Editor
@@ -17,10 +25,18 @@ export default function EditorBlock() {
         theme="vs-dark"
         language="cpp"
         defaultLanguage="cpp"
-        defaultValue="# Entergg your code here"
+        defaultValue="# Enter your code here"
+        onChange={(value) => {
+          setUserCode(value);
+        }}
       />
-      <Sidebar/>
-      <Button className="absolute bottom-4 right-6 z-2">Submit</Button>
+      <Sidebar />
+      <Button
+        className="absolute bottom-4 right-6 z-2"
+        onClick={() => compile()}
+      >
+        Submit
+      </Button>
     </section>
   );
 }

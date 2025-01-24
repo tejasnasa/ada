@@ -1,13 +1,22 @@
-import { Suspense } from "react";
+"use client";
+
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { ScrollArea } from "../ui/scroll-area";
 import { Textarea } from "../ui/textarea";
 import OutputSkeleton from "./output-skeleton";
 
-const output = `Hello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorldHello\nWorld`;
+interface InputOutputProps {
+  setUserInput: any;
+  userOutput: any;
+  loading: boolean;
+}
 
-export default function InputOutput() {
+export default function InputOutput({
+  setUserInput,
+  userOutput,
+  loading,
+}: InputOutputProps) {
   return (
     <section className="w-[30%]">
       <Card className="ml-3 mb-3 h-[49%]">
@@ -20,7 +29,10 @@ export default function InputOutput() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Textarea className="h-[275px]" />
+          <Textarea
+            className="h-[275px]"
+            onChange={(e) => setUserInput(e.target.value)}
+          />
         </CardContent>
       </Card>
       <Card className="ml-3 h-[49%]">
@@ -34,9 +46,8 @@ export default function InputOutput() {
         </CardHeader>
         <CardContent>
           <ScrollArea className="h-[275px] rounded-md border border-input bg-background px-3 py-3 text-base ring-offset-background">
-            <Suspense fallback={<OutputSkeleton/>}>
-              <pre>{output}</pre>
-            </Suspense>
+            {!loading && <pre>{userOutput}</pre>}
+            {loading && <OutputSkeleton />}
           </ScrollArea>
         </CardContent>
       </Card>
