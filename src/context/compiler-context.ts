@@ -1,10 +1,11 @@
+import codeTypeArray from "@/lib/data";
 import Axios from "axios";
 import { create } from "zustand";
 
 const defaultValue = `#include <iostream>
 using namespace std;
 
-int main(){
+int main() {
 
 }`;
 
@@ -18,13 +19,15 @@ interface CompilerState {
   theme: "vs" | "vs-dark" | "hc-black" | "hc-light";
   loading: boolean;
   font: number;
+  codingType: number;
   setUserCode: (code: string) => void;
   setUserInput: (input: string) => void;
   setUserOutput: (output: { code: string; isError: boolean }) => void;
   setLoading: (loading: boolean) => void;
-  compileCode: () => Promise<void>;
+  compileCode: (value: number) => Promise<void>;
   setTheme: (theme: "vs" | "vs-dark" | "hc-black" | "hc-light") => void;
   setFont: (value: number) => void;
+  setCodingType: (value: number) => void;
 }
 
 export const useCompilerStore = create<CompilerState>((set, get) => ({
@@ -37,6 +40,7 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
   loading: false,
   theme: "vs-dark",
   font: 20,
+  codingType: 1,
 
   setUserCode: (code) => set({ userCode: code }),
   setUserInput: (input) => set({ userInput: input }),
@@ -44,8 +48,9 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
   setLoading: (loading) => set({ loading }),
   setTheme: (theme) => set({ theme }),
   setFont: (value) => set({ font: value }),
+  setCodingType: (value) => set({ codingType: value }),
 
-  compileCode: async () => {
+  compileCode: async (codingType: number) => {
     const { userCode, userInput, setUserOutput, setLoading } = get();
 
     setLoading(true);
@@ -59,7 +64,15 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
         data: {
           language: "c++",
           version: "10.2.0",
-          files: [{ name: "main", content: userCode }],
+          files: [
+            {
+              name: "main",
+              content:
+                codeTypeArray[codingType].preCode +
+                userCode +
+                codeTypeArray[codingType].postCode,
+            },
+          ],
           stdin: userInput,
         },
       };
@@ -80,6 +93,7 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
         isError: true,
       };
       setUserOutput(data);
+      console.log(error);
     } finally {
       setLoading(false);
     }

@@ -8,16 +8,21 @@ import EditorSkeleton from "./editor-skeleton";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
 import { Sidebar } from "./sidebar";
+import codeTypeArray from "@/lib/data";
 
 export default function EditorBlock() {
-  const { userCode, setUserCode, compileCode, theme, font } =
+  const { userCode, setUserCode, compileCode, theme, font, codingType } =
     useCompilerStore();
   const { toast } = useToast();
 
   const copyToClipboard = () => {
     if (navigator.clipboard && userCode) {
       navigator.clipboard
-        .writeText(userCode)
+        .writeText(
+          codeTypeArray[codingType].preCode +
+            userCode +
+            codeTypeArray[codingType].postCode
+        )
         .then(() => {
           toast({
             title: "Code copied",
@@ -44,7 +49,7 @@ export default function EditorBlock() {
         theme={theme}
         language="cpp"
         defaultLanguage="cpp"
-        value={userCode}
+        value={codeTypeArray[codingType].defaultCode}
         loading={<EditorSkeleton />}
         onChange={(value) => setUserCode(value || "")}
       />
@@ -63,7 +68,7 @@ export default function EditorBlock() {
       >
         <Image src={copy} alt="Copy" />
       </Button>
-      <Button className="absolute bottom-4 right-6 z-10" onClick={compileCode}>
+      <Button className="absolute bottom-4 right-6 z-10" onClick={() => compileCode(codingType)}>
         Submit
       </Button>
     </div>

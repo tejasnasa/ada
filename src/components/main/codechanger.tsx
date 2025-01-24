@@ -8,23 +8,21 @@ import {
 import { useCompilerStore } from "@/context/compiler-context";
 
 export default function CodeChanger() {
-  const { theme, setTheme } = useCompilerStore();
+  const { codingType, setCodingType } = useCompilerStore();
 
   return (
     <Select
-      value={theme}
-      onValueChange={(value: "vs" | "vs-dark" | "hc-black" | "hc-light") =>
-        setTheme(value)
-      }
+      value={`${codingType}`}
+      onValueChange={(value: string) => setCodingType(Number(value))}
     >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="vs">Light</SelectItem>
-        <SelectItem value="vs-dark">Dark</SelectItem>
-        <SelectItem value="hc-black">High Contrast Black</SelectItem>
-        <SelectItem value="hc-light">High Contrast Light</SelectItem>
+        <SelectItem value="0">No Loop</SelectItem>
+        <SelectItem value="1">Loop</SelectItem>
+        <SelectItem value="2">No Loop - With Function</SelectItem>
+        <SelectItem value="3">Loop - With Function</SelectItem>
       </SelectContent>
     </Select>
   );

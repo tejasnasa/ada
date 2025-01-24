@@ -15,6 +15,7 @@ import Image from "next/image";
 import { Slider } from "../ui/slider";
 import Dropdown from "./themechanger";
 import { useCompilerStore } from "@/context/compiler-context";
+import CodeChanger from "./codechanger";
 
 export function Sidebar() {
   const { font, setFont } = useCompilerStore();
@@ -59,7 +60,7 @@ export function Sidebar() {
             <Label htmlFor="slider" className="text-right">
               Type
             </Label>
-            <Dropdown />
+            <CodeChanger />
           </div>
         </div>
         <SheetFooter>
