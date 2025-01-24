@@ -1,3 +1,9 @@
+import Eeditor from "@/components/editor";
+
 export default function Home() {
-  return <main>ADA</main>;
+  return (
+    <main>
+      <Eeditor />
+    </main>
+  );
 }

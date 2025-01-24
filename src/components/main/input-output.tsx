@@ -9,22 +9,26 @@ export default function InputOutput() {
   return (
     <section className="w-[30%]">
       <Card className="ml-3 mb-3 h-[49%]">
-        <CardHeader className="flex flex-row justify-between items-center align-middle">
-          <CardTitle>Input</CardTitle>
-          <Button size={"sm"} className="">
-            Clear
-          </Button>
+        <CardHeader>
+          <CardTitle className="flex flex-row justify-between items-center align-middle">
+            Input
+            <Button size={"sm"} className="">
+              Clear
+            </Button>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <Textarea className="h-[275px]" />
         </CardContent>
       </Card>
       <Card className="ml-3 h-[49%]">
-        <CardHeader className="flex flex-row justify-between items-center align-middle">
-          <CardTitle>Output</CardTitle>
-          <Button size={"sm"} className="">
-            Clear
-          </Button>
+        <CardHeader>
+          <CardTitle className="flex flex-row justify-between items-center align-middle">
+            Output
+            <Button size={"sm"} className="">
+              Clear
+            </Button>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <ScrollArea className="h-[275px] rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background">
