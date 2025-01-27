@@ -260,6 +260,11 @@ signed main() {
 
 }`,
   },
+  {
+    preCode: ``,
+    postCode: ``,
+    defaultCode: ``,
+  },
 ];
 
 export default codeTypeArray;

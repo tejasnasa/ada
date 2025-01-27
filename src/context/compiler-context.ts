@@ -2,13 +2,6 @@ import codeTypeArray from "@/lib/data";
 import Axios from "axios";
 import { create } from "zustand";
 
-const defaultValue = `#include <iostream>
-using namespace std;
-
-int main() {
-
-}`;
-
 interface CompilerState {
   userCode: string;
   userInput: string;
@@ -31,7 +24,7 @@ interface CompilerState {
 }
 
 export const useCompilerStore = create<CompilerState>((set, get) => ({
-  userCode: defaultValue,
+  userCode: codeTypeArray[0].defaultCode,
   userInput: "",
   userOutput: {
     code: "",
@@ -40,7 +33,7 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
   loading: false,
   theme: "customDarkTheme",
   font: 20,
-  codingType: 1,
+  codingType: 0,
 
   setUserCode: (code) => set({ userCode: code }),
   setUserInput: (input) => set({ userInput: input }),

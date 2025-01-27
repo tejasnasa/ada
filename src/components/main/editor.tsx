@@ -1,5 +1,4 @@
 "use client";
-
 import { Editor } from "@monaco-editor/react";
 import { Button } from "@/components/ui/button";
 import { useCompilerStore } from "@/context/compiler-context";
@@ -41,6 +40,14 @@ export default function EditorBlock() {
     }
   };
 
+  const handleClear = () => {
+    setUserCode("");
+    toast({
+      title: "Editor cleared",
+      duration: 2000,
+    });
+  };
+
   return (
     <div className="relative w-full h-full">
       <Editor
@@ -50,7 +57,7 @@ export default function EditorBlock() {
         theme={theme}
         language="cpp"
         defaultLanguage="cpp"
-        value={codeTypeArray[codingType].defaultCode}
+        value={userCode}
         loading={<EditorSkeleton />}
         onChange={(value) => setUserCode(value || "")}
         beforeMount={(monaco) => {
@@ -58,16 +65,15 @@ export default function EditorBlock() {
         }}
       />
       <Sidebar />
-
       <Button
-        className="absolute bottom-4 right-40 z-10 bg-black hover:bg-gray-900 text-white"
-        onClick={() => setUserCode("")}
+        className="absolute bottom-4 right-40 z-10 bg-black hover:bg-[#252525] text-white"
+        onClick={handleClear}
       >
         Clear
       </Button>
       <Button
         size="icon"
-        className="absolute bottom-4 right-28 z-10 bg-transparent text-white"
+        className="absolute bottom-4 right-28 z-10 bg-transparent text-white hover:bg-[#252525]"
         onClick={copyToClipboard}
       >
         <Image src={copy} alt="Copy" />

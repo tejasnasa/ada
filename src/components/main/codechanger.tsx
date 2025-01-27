@@ -23,6 +23,7 @@ export default function CodeChanger() {
         <SelectItem value="1">Loop</SelectItem>
         <SelectItem value="2">No Loop - With Function</SelectItem>
         <SelectItem value="3">Loop - With Function</SelectItem>
+        <SelectItem value="4">Blank</SelectItem>
       </SelectContent>
     </Select>
   );
