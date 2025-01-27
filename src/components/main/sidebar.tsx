@@ -15,10 +15,14 @@ import { Slider } from "../ui/slider";
 import Dropdown from "./themechanger";
 import { useCompilerStore } from "@/context/compiler-context";
 import CodeChanger from "./codechanger";
-import snippet from "@/assets/carbon.png";
+import loop from "@/assets/loop.png";
+import noloop from "@/assets/no-loop.png";
+import noloop2 from "@/assets/no-loop2.png";
+import loop2 from "@/assets/loop2.png";
+import blank from "@/assets/blank.png";
 
 export function Sidebar() {
-  const { font, setFont } = useCompilerStore();
+  const { font, setFont, codingType } = useCompilerStore();
 
   return (
     <Sheet>
@@ -31,12 +35,12 @@ export function Sidebar() {
           <Image src={image} alt="settings" />
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="flex flex-col justify-between">
         <SheetHeader>
-          <SheetTitle className="text-2xl">Settings</SheetTitle>
+          <SheetTitle className="text-3xl">Settings</SheetTitle>
         </SheetHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4 w-[100%]">
+          <div className="grid grid-cols-4 items-center gap-4 w-[100%] mt-5">
             <Label htmlFor="slider" className="text-right">
               Font size
             </Label>
@@ -50,25 +54,32 @@ export function Sidebar() {
               onValueChange={([newValue]) => setFont(newValue)}
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-4 items-center gap-4 mt-2">
             <Label htmlFor="slider" className="text-right">
               Theme
             </Label>
             <Dropdown />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-4 items-center gap-4 mt-1">
             <Label htmlFor="slider" className="text-right">
               Type
             </Label>
             <CodeChanger />
           </div>
         </div>
-        <Image src={snippet} alt="Snippet" />
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose>
-        </SheetFooter>
+        {codingType === 0 && <Image src={noloop} alt="" />}
+        {codingType === 1 && <Image src={loop} alt="" />}
+        {codingType === 2 && <Image src={noloop2} alt="" />}
+        {codingType === 3 && <Image src={loop2} alt="" />}
+        {codingType === 4 && <Image src={blank} alt="" />}
+
+        <div>
+          <SheetFooter className="mt-1">
+            <SheetClose asChild>
+              <Button type="submit">Save changes</Button>
+            </SheetClose>
+          </SheetFooter>
+        </div>
       </SheetContent>
     </Sheet>
   );
