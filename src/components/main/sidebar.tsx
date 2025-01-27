@@ -67,11 +67,13 @@ export function Sidebar() {
             <CodeChanger />
           </div>
         </div>
-        {codingType === 0 && <Image src={noloop} alt="" />}
-        {codingType === 1 && <Image src={loop} alt="" />}
-        {codingType === 2 && <Image src={noloop2} alt="" />}
-        {codingType === 3 && <Image src={loop2} alt="" />}
-        {codingType === 4 && <Image src={blank} alt="" />}
+        <div className="h-[700px] flex flex-col justify-center">
+          {codingType === 0 && <Image src={noloop} alt="" />}
+          {codingType === 1 && <Image src={loop} alt="" />}
+          {codingType === 2 && <Image src={noloop2} alt="" />}
+          {codingType === 3 && <Image src={loop2} alt="" />}
+          {codingType === 4 && <Image src={blank} alt="" />}
+        </div>
 
         <div>
           <SheetFooter className="mt-1">
