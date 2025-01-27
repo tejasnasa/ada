@@ -13,7 +13,7 @@ export default function ThemeChanger() {
   return (
     <Select
       value={theme}
-      onValueChange={(value: "vs" | "vs-dark" | "hc-black" | "hc-light") =>
+      onValueChange={(value: "vs" | "customDarkTheme" | "hc-black" ) =>
         setTheme(value)
       }
     >
@@ -22,9 +22,8 @@ export default function ThemeChanger() {
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="vs">Light</SelectItem>
-        <SelectItem value="vs-dark">Dark</SelectItem>
-        <SelectItem value="hc-black">High Contrast Black</SelectItem>
-        <SelectItem value="hc-light">High Contrast Light</SelectItem>
+        <SelectItem value="customDarkTheme">Dark</SelectItem>
+        <SelectItem value="hc-black">High Contrast Dark</SelectItem>
       </SelectContent>
     </Select>
   );

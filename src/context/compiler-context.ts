@@ -16,7 +16,7 @@ interface CompilerState {
     code: string;
     isError: boolean;
   };
-  theme: "vs" | "vs-dark" | "hc-black" | "hc-light";
+  theme: "vs" | "customDarkTheme" | "hc-black";
   loading: boolean;
   font: number;
   codingType: number;
@@ -25,7 +25,7 @@ interface CompilerState {
   setUserOutput: (output: { code: string; isError: boolean }) => void;
   setLoading: (loading: boolean) => void;
   compileCode: (value: number) => Promise<void>;
-  setTheme: (theme: "vs" | "vs-dark" | "hc-black" | "hc-light") => void;
+  setTheme: (theme: "vs" | "customDarkTheme" | "hc-black") => void;
   setFont: (value: number) => void;
   setCodingType: (value: number) => void;
 }
@@ -38,7 +38,7 @@ export const useCompilerStore = create<CompilerState>((set, get) => ({
     isError: false,
   },
   loading: false,
-  theme: "vs-dark",
+  theme: "customDarkTheme",
   font: 20,
   codingType: 1,
 

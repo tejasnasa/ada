@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Sheet,
@@ -16,6 +15,7 @@ import { Slider } from "../ui/slider";
 import Dropdown from "./themechanger";
 import { useCompilerStore } from "@/context/compiler-context";
 import CodeChanger from "./codechanger";
+import snippet from "@/assets/carbon.png";
 
 export function Sidebar() {
   const { font, setFont } = useCompilerStore();
@@ -63,6 +63,7 @@ export function Sidebar() {
             <CodeChanger />
           </div>
         </div>
+        <Image src={snippet} alt="Snippet" />
         <SheetFooter>
           <SheetClose asChild>
             <Button type="submit">Save changes</Button>

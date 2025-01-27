@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
 import { Sidebar } from "./sidebar";
 import codeTypeArray from "@/lib/data";
+import { customDarkTheme } from "@/lib/theme";
 
 export default function EditorBlock() {
   const { userCode, setUserCode, compileCode, theme, font, codingType } =
@@ -52,6 +53,9 @@ export default function EditorBlock() {
         value={codeTypeArray[codingType].defaultCode}
         loading={<EditorSkeleton />}
         onChange={(value) => setUserCode(value || "")}
+        beforeMount={(monaco) => {
+          monaco.editor.defineTheme("customDarkTheme", customDarkTheme);
+        }}
       />
       <Sidebar />
 
@@ -68,7 +72,10 @@ export default function EditorBlock() {
       >
         <Image src={copy} alt="Copy" />
       </Button>
-      <Button className="absolute bottom-4 right-6 z-10" onClick={() => compileCode(codingType)}>
+      <Button
+        className="absolute bottom-4 right-6 z-10"
+        onClick={() => compileCode(codingType)}
+      >
         Submit
       </Button>
     </div>
