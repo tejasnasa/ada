@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { useCompilerStore } from "@/context/compiler-context";
-import OutputSkeleton from "@/components/main/output-skeleton";
+import OutputSkeleton from "@/components/output-skeleton";
 
 export default function InputOutput() {
   const {

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import image from "@/assets/settings.svg";
 import Image from "next/image";
-import { Slider } from "../ui/slider";
+import { Slider } from "@/components/ui/slider";
 import Dropdown from "./themechanger";
 import { useCompilerStore } from "@/context/compiler-context";
 import CodeChanger from "./codechanger";
@@ -30,7 +30,7 @@ export function Sidebar() {
         <Button
           size="icon"
           variant="outline"
-          className="absolute bottom-2 left-2 z-2 bg-transparent border-transparent"
+          className="absolute bottom-2 left-12 z-2 bg-transparent border-transparent"
         >
           <Image src={image} alt="settings" />
         </Button>

@@ -1,102 +1,100 @@
 "use client";
 
-import { useState } from "react";
-import Editor from "@monaco-editor/react";
-import Axios from "axios";
-import "./editor.css";
-import spinner from "./spinner.svg";
+import { Editor } from "@monaco-editor/react";
+import { Button } from "@/components/ui/button";
+import { useCompilerStore } from "@/context/compiler-context";
+import copy from "@/assets/copy.svg";
+import EditorSkeleton from "./editor-skeleton";
+import { useToast } from "@/hooks/use-toast";
+import Image from "next/image";
+import { Sidebar } from "./sidebar";
+import codeTypeArray from "@/lib/data";
+import { customDarkTheme } from "@/lib/theme";
+import logo from "@/assets/logo2.png";
+import { Dialog } from "./ui/dialog";
+import { DialogDemo } from "./dialog";
 
+export default function EditorBlock() {
+  const { userCode, setUserCode, compileCode, theme, font, codingType } =
+    useCompilerStore();
+  const { toast } = useToast();
 
-
-function Eeditor() {
-  const [userCode, setUserCode] = useState<string | undefined>(``);
-  const [userInput, setUserInput] = useState("");
-  const [userOutput, setUserOutput] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const options = {
-    fontSize: 20,
+  const copyToClipboard = () => {
+    if (navigator.clipboard && userCode) {
+      navigator.clipboard
+        .writeText(
+          codeTypeArray[codingType].preCode +
+            userCode +
+            codeTypeArray[codingType].postCode
+        )
+        .then(() => {
+          toast({
+            title: "Code copied",
+            duration: 2000,
+          });
+        })
+        .catch(() => {
+          alert("Failed to copy code. Please try again.");
+        });
+    } else {
+      toast({
+        title: "Nothing to copy!",
+        duration: 2000,
+      });
+    }
   };
 
-  function compile() {
-    setLoading(true);
-    if (userCode === ``) {
-      return;
-    }
-
-    Axios.post(`http://localhost:8000/compile`, {
-      code: userCode,
-      language: "c++",
-      input: userInput,
-    })
-      .then((res) => {
-        setUserOutput(res.data.stdout || res.data.stderr);
-      })
-      .then(() => {
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setUserOutput(
-          "Error: " + (err.response ? err.response.data.error : err.message)
-        );
-        setLoading(false);
-      });
-  }
-
-  function clearOutput() {
-    setUserOutput("");
-  }
+  const handleClear = () => {
+    setUserCode("");
+    toast({
+      title: "Editor cleared",
+      duration: 2000,
+    });
+  };
 
   return (
-    <div className="App">
-      <div className="main">
-        <div className="left-container">
-          <Editor
-            options={options}
-            height="calc(100vh - 50px)"
-            width="100%"
-            theme="vs-dark"
-            language="cpp"
-            defaultLanguage="cpp"
-            onChange={(value) => {
-              setUserCode(value);
-            }}
-          />
-          <button className="run-btn" onClick={() => compile()}>
-            Run
-          </button>
-        </div>
-        <div className="right-container">
-          <h4>Input:</h4>
-          <div className="input-box">
-            <textarea
-              id="code-inp"
-              onChange={(e) => setUserInput(e.target.value)}
-            ></textarea>
-          </div>
-          <h4>Output:</h4>
-          {loading ? (
-            <div className="spinner-box">
-              <img src={spinner} alt="Loading..." />
-            </div>
-          ) : (
-            <div className="output-box">
-              <pre>{userOutput}</pre>
-              <button
-                onClick={() => {
-                  clearOutput();
-                }}
-                className="clear-btn"
-              >
-                Clear
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
+    <div className="relative w-full h-full">
+      <Editor
+        options={{ fontSize: font }}
+        width="100%"
+        height="100%"
+        theme={theme}
+        language="cpp"
+        defaultLanguage="cpp"
+        value={userCode}
+        loading={<EditorSkeleton />}
+        onChange={(value) => setUserCode(value || "")}
+        beforeMount={(monaco) => {
+          monaco.editor.defineTheme("customDarkTheme", customDarkTheme);
+        }}
+      />
+      <Image
+        src={logo}
+        alt="Ada"
+        height={30}
+        className="absolute bottom-2 left-2 mb-[4px]"
+      />
+      <Sidebar />
+      <DialogDemo />
+      <Button
+        className="absolute bottom-4 right-40 z-10 bg-black hover:bg-[#252525] text-white"
+        onClick={handleClear}
+      >
+        Clear
+      </Button>
+      <Button
+        size="icon"
+        className="absolute bottom-4 right-28 z-10 bg-transparent text-white hover:bg-[#252525]"
+        onClick={copyToClipboard}
+      >
+        <Image src={copy} alt="Copy" />
+      </Button>
+      <Button
+        className="absolute bottom-4 right-6 z-10"
+        onClick={() => compileCode(codingType)}
+      >
+        Submit
+      </Button>
     </div>
   );
 }
-
-export default Eeditor;
