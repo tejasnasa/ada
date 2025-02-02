@@ -2,6 +2,18 @@ import codeTypeArray from "@/lib/data";
 import Axios from "axios";
 import { create } from "zustand";
 
+type ThemeType =
+  | "vs"
+  | "customDarkTheme"
+  | "hc-black"
+  | "monokai"
+  | "dracula"
+  | "cobalt"
+  | "kuroir"
+  | "nightOwl"
+  | "solarDark"
+  | "solarLight";
+
 interface CompilerState {
   userCode: string;
   userInput: string;
@@ -9,7 +21,7 @@ interface CompilerState {
     code: string;
     isError: boolean;
   };
-  theme: "vs" | "customDarkTheme" | "hc-black";
+  theme: ThemeType;
   loading: boolean;
   font: number;
   codingType: number;
@@ -18,7 +30,7 @@ interface CompilerState {
   setUserOutput: (output: { code: string; isError: boolean }) => void;
   setLoading: (loading: boolean) => void;
   compileCode: (value: number) => Promise<void>;
-  setTheme: (theme: "vs" | "customDarkTheme" | "hc-black") => void;
+  setTheme: (theme: ThemeType) => void;
   setFont: (value: number) => void;
   setCodingType: (value: number) => void;
 }

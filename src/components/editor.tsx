@@ -9,9 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
 import { Sidebar } from "./sidebar";
 import codeTypeArray from "@/lib/data";
-import { customDarkTheme } from "@/lib/theme";
+import { initializeTheme } from "@/lib/theme";
 import logo from "@/assets/logo2.png";
-import { Dialog } from "./ui/dialog";
 import { DialogDemo } from "./dialog";
 
 export default function EditorBlock() {
@@ -65,7 +64,7 @@ export default function EditorBlock() {
         loading={<EditorSkeleton />}
         onChange={(value) => setUserCode(value || "")}
         beforeMount={(monaco) => {
-          monaco.editor.defineTheme("customDarkTheme", customDarkTheme);
+          initializeTheme(monaco);
         }}
       />
       <Image
@@ -84,7 +83,7 @@ export default function EditorBlock() {
       </Button>
       <Button
         size="icon"
-        className="absolute bottom-4 right-28 z-10 bg-transparent text-white hover:bg-[#252525]"
+        className="absolute bottom-4 right-28 z-10 bg-transparent dark:text-white hover:bg-[#252525] bg-black text-white"
         onClick={copyToClipboard}
       >
         <Image src={copy} alt="Copy" />

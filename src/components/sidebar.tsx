@@ -20,6 +20,7 @@ import noloop from "@/assets/no-loop.png";
 import noloop2 from "@/assets/no-loop2.png";
 import loop2 from "@/assets/loop2.png";
 import blank from "@/assets/blank.png";
+import settings2 from "@/assets/settings2.svg";
 
 export function Sidebar() {
   const { font, setFont, codingType } = useCompilerStore();
@@ -32,7 +33,8 @@ export function Sidebar() {
           variant="outline"
           className="absolute bottom-2 left-12 z-2 bg-transparent border-transparent"
         >
-          <Image src={image} alt="settings" />
+          <Image src={image} alt="settings" className="dark:block hidden" />
+          <Image src={settings2} alt="settings" className="dark:hidden block" />
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col justify-between">

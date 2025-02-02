@@ -12,9 +12,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import image from "@/assets/settings.svg";
-import help from "@/assets/circle-help.svg"
-import { CircleHelp, Copy } from "lucide-react";
+import help from "@/assets/circle-help.svg";
+import { Copy } from "lucide-react";
+import help2 from "@/assets/circle-help2.svg";
 
 export function DialogDemo() {
   return (
@@ -25,7 +25,8 @@ export function DialogDemo() {
           variant="outline"
           className="absolute bottom-2 left-24 text-white z-2 bg-transparent border-transparent"
         >
-          <Image src={help} alt="Ada"/>
+          <Image src={help} alt="Ada" className="dark:block hidden" />
+          <Image src={help2} alt="Ada" className="dark:hidden block" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">

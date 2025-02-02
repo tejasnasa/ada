@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function EditorSkeleton() {
   return (
-    <div className="w-[100%] space-y-2 bg-[#1E1E1E] h-[100%] p-8">
+    <div className="w-[100%] space-y-2 bg-[#0A0A0A] h-[100%] p-8">
       <Skeleton className="w-[20%]" />
       <div className="w-[100%] bg-transparent h-5 mt-1"></div>
       <Skeleton className="w-[48%]" />
