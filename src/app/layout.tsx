@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ada",
+  title: "Ada: Online Compiler for Competitive Programming",
   description: "Fast online compiler for competitive programmers.",
 };
 

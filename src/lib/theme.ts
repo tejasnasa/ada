@@ -1,9 +1,3 @@
-declare global {
-  interface Window {
-    monaco: typeof import("monaco-editor");
-  }
-}
-
 import { editor } from "monaco-editor";
 import cobaltTheme from "@/lib/themes/Cobalt.json";
 import draculaTheme from "@/lib/themes/Dracula.json";
@@ -39,7 +33,7 @@ export const customDarkTheme: editor.IStandaloneThemeData = {
 };
 
 export const initializeTheme = (
-  monaco: typeof import("c:/Projects/ada/node_modules/monaco-editor/esm/vs/editor/editor.api")
+  monaco: typeof import("monaco-editor/esm/vs/editor/editor.api")
 ) => {
   monaco.editor.defineTheme("customDarkTheme", customDarkTheme);
   monaco.editor.defineTheme("monokai", monokai);

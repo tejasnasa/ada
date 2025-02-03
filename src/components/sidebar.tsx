@@ -23,7 +23,7 @@ import blank from "@/assets/blank.png";
 import settings2 from "@/assets/settings2.svg";
 
 export function Sidebar() {
-  const { font, setFont, codingType } = useCompilerStore();
+  const { font, setFont, codingType, theme } = useCompilerStore();
 
   return (
     <Sheet>
@@ -37,11 +37,17 @@ export function Sidebar() {
           <Image src={settings2} alt="settings" className="dark:hidden block" />
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col justify-between">
+      <SheetContent
+        className={`flex flex-col justify-between ${
+          theme !== "vs" && theme !== "kuroir" && theme !== "solarLight"
+            ? "dark"
+            : undefined
+        }`}
+      >
         <SheetHeader>
           <SheetTitle className="text-3xl">Settings</SheetTitle>
         </SheetHeader>
-        <div className="grid gap-4 py-4">
+        <div className="grid gap-4 py-4 dark:bg-black dark:text-white ">
           <div className="grid grid-cols-4 items-center gap-4 w-[100%] mt-5">
             <Label htmlFor="slider" className="text-right">
               Font size
