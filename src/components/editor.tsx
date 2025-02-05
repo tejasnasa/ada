@@ -4,6 +4,7 @@ import { Editor } from "@monaco-editor/react";
 import { Button } from "@/components/ui/button";
 import { useCompilerStore } from "@/context/compiler-context";
 import copy from "@/assets/copy.svg";
+import copy2 from "@/assets/copy2.svg";
 import EditorSkeleton from "./editor-skeleton";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
@@ -76,10 +77,11 @@ export default function EditorBlock() {
       </Button>
       <Button
         size="icon"
-        className="absolute bottom-4 right-28 z-10 bg-transparent hover:bg-[#252525] bg-black text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
+        className="absolute bottom-4 right-[110px] z-10 bg-transparent hover:bg-[#252525] bg-black text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
         onClick={copyToClipboard}
       >
-        <Image src={copy} alt="Copy" />
+        <Image src={copy} alt="Copy" className="dark:hidden block" />
+        <Image src={copy2} alt="Copy" className="dark:block hidden"/>
       </Button>
       <Button
         className="absolute bottom-4 right-6 z-10"
