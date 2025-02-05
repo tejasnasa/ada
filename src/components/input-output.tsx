@@ -30,7 +30,7 @@ export default function InputOutput() {
         </CardHeader>
         <CardContent>
           <Textarea
-            className="h-[275px]"
+            className="h-[281px]"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
           />
@@ -50,7 +50,7 @@ export default function InputOutput() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[275px] rounded-md border border-input bg-background px-3 py-3 text-base">
+          <ScrollArea className="h-[281px] rounded-md border border-input bg-background px-3 py-3 text-base">
             {!loading && userOutput.isError && (
               <pre className="text-wrap text-red-500">{userOutput.code}</pre>
             )}

@@ -10,7 +10,6 @@ import Image from "next/image";
 import { Sidebar } from "./sidebar";
 import codeTypeArray from "@/lib/data";
 import { initializeTheme } from "@/lib/theme";
-import logo from "@/assets/logo2.png";
 import { DialogDemo } from "./dialog";
 
 export default function EditorBlock() {
@@ -67,23 +66,17 @@ export default function EditorBlock() {
           initializeTheme(monaco);
         }}
       />
-      <Image
-        src={logo}
-        alt="Ada"
-        height={30}
-        className="absolute bottom-2 left-2 mb-[4px]"
-      />
       <Sidebar />
       <DialogDemo />
       <Button
-        className="absolute bottom-4 right-40 z-10 bg-black hover:bg-[#252525] text-white"
+        className="absolute bottom-4 right-40 z-10 bg-black hover:bg-[#252525] text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
         onClick={handleClear}
       >
         Clear
       </Button>
       <Button
         size="icon"
-        className="absolute bottom-4 right-28 z-10 bg-transparent dark:text-white hover:bg-[#252525] bg-black text-white"
+        className="absolute bottom-4 right-28 z-10 bg-transparent hover:bg-[#252525] bg-black text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
         onClick={copyToClipboard}
       >
         <Image src={copy} alt="Copy" />

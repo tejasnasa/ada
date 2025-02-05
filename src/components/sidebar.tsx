@@ -31,7 +31,7 @@ export function Sidebar() {
         <Button
           size="icon"
           variant="outline"
-          className="absolute bottom-2 left-12 z-2 bg-transparent border-transparent"
+          className="absolute bottom-2 left-2 z-2 bg-transparent border-transparent"
         >
           <Image src={image} alt="settings" className="dark:block hidden" />
           <Image src={settings2} alt="settings" className="dark:hidden block" />
@@ -44,10 +44,10 @@ export function Sidebar() {
             : undefined
         }`}
       >
-        <SheetHeader>
+        <SheetHeader className="dark:bg-[#0A0A0A] dark:text-white bg-white text-black transition ease-in-out">
           <SheetTitle className="text-3xl">Settings</SheetTitle>
         </SheetHeader>
-        <div className="grid gap-4 py-4 dark:bg-black dark:text-white ">
+        <div className="grid gap-4 py-4 dark:bg-[#0A0A0A] dark:text-white bg-white text-black transition ease-in-out">
           <div className="grid grid-cols-4 items-center gap-4 w-[100%] mt-5">
             <Label htmlFor="slider" className="text-right">
               Font size
