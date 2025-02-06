@@ -28,7 +28,7 @@ export default function EditorMobile() {
         )
         .then(() => {
           toast({
-            title: "Code copied",
+            title: "Code copied!",
             duration: 2000,
           });
         })
@@ -46,14 +46,15 @@ export default function EditorMobile() {
   const handleClear = () => {
     setUserCode("");
     toast({
-      title: "Editor cleared",
+      title: "Editor cleared!",
       duration: 2000,
     });
   };
 
   return (
     <div className="relative w-full h-dvh">
-      <Editor className="absolute left-[-10%] h-dvh"
+      <Editor
+        className="absolute left-[-10%] h-dvh"
         options={{
           fontSize: font,
           folding: false,

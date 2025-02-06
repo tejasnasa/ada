@@ -8,6 +8,7 @@ Try Ada Compiler here: **[Live Link](https://codewithada.vercel.app/)**
 
 ## Features
 
+- **Full Responsive** - Runs seamlessly on desktop and mobile. 
 - **Preloaded Boilerplate** – Users only need to write the main logic.
 - **5 Coding Formats** - Choose whichever boilerplate you like.
 - **Predefined Shortcuts** – Optimized macros for faster coding.
