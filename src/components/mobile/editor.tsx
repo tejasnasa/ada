@@ -52,9 +52,9 @@ export default function EditorMobile() {
   };
 
   return (
-    <div className="relative w-full h-dvh">
+    <div className="relative w-full h-dvh overflow-hidden">
       <Editor
-        className="absolute left-[-10%] h-dvh"
+        className="absolute h-dvh"
         options={{
           fontSize: font,
           folding: false,
@@ -67,7 +67,7 @@ export default function EditorMobile() {
           },
           wordWrap: "on",
         }}
-        width="111%"
+        width="110%"
         height="100%"
         theme={theme}
         language="cpp"
@@ -79,28 +79,30 @@ export default function EditorMobile() {
           initializeTheme(monaco);
         }}
       />
-      <Sidebar />
-      <DialogDemo />
+      <Sidebar device="mobile" />
+      <DialogDemo device="mobile" />
       <Button
-        className="absolute bottom-4 right-40 z-10 bg-black hover:bg-[#252525] text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
+        className="absolute left-2 bottom-4 bg-black hover:bg-[#252525] text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
         onClick={handleClear}
       >
         Clear
       </Button>
-      <Button
-        size="icon"
-        className="absolute bottom-4 right-[110px] z-10 bg-transparent hover:bg-[#252525] bg-black text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
-        onClick={copyToClipboard}
-      >
-        <Image src={copy} alt="Copy" className="dark:hidden block" />
-        <Image src={copy2} alt="Copy" className="dark:block hidden" />
-      </Button>
-      <Button
-        className="absolute bottom-4 right-6 z-10"
-        onClick={() => compileCode(codingType)}
-      >
-        Submit
-      </Button>
+      <div className="absolute bottom-4 right-1 z-10 flex space-x-2">
+        <Button
+          size="icon"
+          className="bg-transparent hover:bg-[#252525] bg-black text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
+          onClick={copyToClipboard}
+        >
+          <Image src={copy} alt="Copy" className="dark:hidden block" />
+          <Image src={copy2} alt="Copy" className="dark:block hidden" />
+        </Button>
+        <Button
+          className="bg-black hover:bg-[#252525] text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
+          onClick={() => compileCode(codingType)}
+        >
+          Submit
+        </Button>
+      </div>
     </div>
   );
 }

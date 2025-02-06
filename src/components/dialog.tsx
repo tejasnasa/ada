@@ -14,7 +14,7 @@ import { useCompilerStore } from "@/context/compiler-context";
 import { ScrollArea } from "./ui/scroll-area";
 import React from "react";
 
-export function DialogDemo() {
+export function DialogDemo({ device }: { device: string }) {
   const { theme } = useCompilerStore();
 
   return (
@@ -23,7 +23,9 @@ export function DialogDemo() {
         <Button
           size="icon"
           variant="outline"
-          className="absolute bottom-2 left-12 text-white z-2 bg-transparent border-transparent"
+          className={`absolute left-[72px] text-white z-2 bg-transparent border-transparent ${
+            device === "mobile" ? "bottom-4" : "bottom-2"
+          }`}
         >
           <Image src={help} alt="Ada" className="dark:block hidden" />
           <Image src={help2} alt="Ada" className="dark:hidden block" />
@@ -135,7 +137,6 @@ export function DialogDemo() {
             </div>
           </ScrollArea>
         </div>
-        
       </DialogContent>
     </Dialog>
   );

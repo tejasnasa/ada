@@ -22,7 +22,7 @@ import loop2 from "@/assets/loop2.png";
 import blank from "@/assets/blank.png";
 import settings2 from "@/assets/settings2.svg";
 
-export function Sidebar() {
+export function Sidebar({ device }: { device: string }) {
   const { font, setFont, codingType, theme } = useCompilerStore();
 
   return (
@@ -31,10 +31,20 @@ export function Sidebar() {
         <Button
           size="icon"
           variant="outline"
-          className="absolute bottom-2 left-2 z-2 bg-transparent border-transparent"
+          className={`absolute bottom-2 left-[104px] z-2 bg-transparent border-transparent ${
+            device === "mobile" ? "bottom-4" : "bottom-2"
+          }`}
         >
-          <Image src={image} alt="settings" className="dark:block hidden" />
-          <Image src={settings2} alt="settings" className="dark:hidden block" />
+          <Image
+            src={image}
+            alt="settings"
+            className="dark:block hidden"
+          />
+          <Image
+            src={settings2}
+            alt="settings"
+            className="dark:hidden block"
+          />
         </Button>
       </SheetTrigger>
       <SheetContent

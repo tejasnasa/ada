@@ -56,7 +56,7 @@ signed main() {
 }
 `,
 
-    defaultCode: `// Debug your dreams, compile your potential.
+    defaultCode: `// Welcome to Ada 
 `,
   },
   {
@@ -126,7 +126,7 @@ signed main() {
 }
 `,
 
-    defaultCode: `// Debug your dreams, compile your potential.
+    defaultCode: `// Welcome to Ada
 `,
   },
   {
@@ -185,7 +185,7 @@ return x;
     cin.tie(0);cout.precision(10);
     cout.setf(ios::fixed);
 
-    // Debug your dreams, compile your potential.
+    // Welcome to Ada
     
     return 0;
 }`,
@@ -256,7 +256,7 @@ signed main() {
 `,
 
     defaultCode: `void solve() {
-    // Debug your dreams, compile your potential.
+    // Welcome to Ada
 
 }`,
   },

@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useCompilerStore } from "@/context/compiler-context";
 import OutputSkeleton from "@/components/output-skeleton";
 
-export default function InputOutput() {
+export default function InputOutputDesktop() {
   const {
     userInput,
     setUserInput,

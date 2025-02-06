@@ -1,6 +1,7 @@
 import EditorDesktop from "@/components/desktop/editor";
-import InputOutput from "@/components/input-output";
+import InputOutputDesktop from "@/components/desktop/input-output";
 import EditorMobile from "@/components/mobile/editor";
+import InputOutputMobile from "@/components/mobile/input-output";
 import { headers } from "next/headers";
 
 export default async function CodeCompilerPage() {
@@ -16,18 +17,14 @@ export default async function CodeCompilerPage() {
             <EditorDesktop />
           </div>
           <div className="w-[30%]">
-            <InputOutput />
+            <InputOutputMobile />
           </div>
         </main>
       )}
       {isMobile && (
         <main className="p-2 flex-col dark:bg-[#0A0A0A] bg-white">
-          <div className="w-[100%] h-dvh flex flex-col">
-            <EditorMobile />
-          </div>
-          <div className="w-[30%]">
-            <InputOutput />
-          </div>
+          <EditorMobile />
+          <InputOutputDesktop />
         </main>
       )}
     </>

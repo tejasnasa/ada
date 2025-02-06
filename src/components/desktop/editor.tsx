@@ -67,8 +67,8 @@ export default function EditorDesktop() {
           initializeTheme(monaco);
         }}
       />
-      <Sidebar />
-      <DialogDemo />
+      <Sidebar device="desktop" />
+      <DialogDemo device="desktop" />
       <Button
         className="absolute bottom-4 right-40 z-10 bg-black hover:bg-[#252525] text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
         onClick={handleClear}
