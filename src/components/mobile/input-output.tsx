@@ -18,8 +18,8 @@ export default function InputOutputMobile() {
   } = useCompilerStore();
 
   return (
-    <section className="h-dvh" id="inputoutput">
-      <Card className="ml-3 mb-3 w-full">
+    <section className="h-[90%]" id="inputoutput">
+      <Card className="h-[49%] m-2 mb-3">
         <CardHeader>
           <CardTitle className="flex flex-row justify-between items-center">
             Input
@@ -28,16 +28,16 @@ export default function InputOutputMobile() {
             </Button>
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col justify-center items-center">
           <Textarea
-            className="h-[281px]"
+            className="h-[320px]"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
           />
         </CardContent>
       </Card>
 
-      <Card className="ml-3 ">
+      <Card className="h-[49%] m-2">
         <CardHeader>
           <CardTitle className="flex flex-row justify-between items-center">
             Output
@@ -50,7 +50,7 @@ export default function InputOutputMobile() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[281px] rounded-md border border-input bg-background px-3 py-3 text-base">
+          <ScrollArea className="h-[320px] rounded-md border border-input bg-background px-3 py-3 text-base">
             {!loading && userOutput.isError && (
               <pre className="text-wrap text-red-500">{userOutput.code}</pre>
             )}

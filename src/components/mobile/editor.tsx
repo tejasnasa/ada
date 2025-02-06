@@ -12,6 +12,8 @@ import { Sidebar } from "@/components/sidebar";
 import codeTypeArray from "@/lib/data";
 import { initializeTheme } from "@/lib/theme";
 import { DialogDemo } from "@/components/dialog";
+import Link from "next/link";
+import arrow from "@/assets/arrow2.svg";
 
 export default function EditorMobile() {
   const { userCode, setUserCode, compileCode, theme, font, codingType } =
@@ -87,6 +89,12 @@ export default function EditorMobile() {
       >
         Clear
       </Button>
+      <Link
+        href={"#inputoutput"}
+        className="absolute bottom-6 left-1/2 text-white"
+      >
+        <Image src={arrow} alt="" />
+      </Link>
       <div className="absolute bottom-4 right-1 z-10 flex space-x-2">
         <Button
           size="icon"
@@ -97,7 +105,7 @@ export default function EditorMobile() {
           <Image src={copy2} alt="Copy" className="dark:block hidden" />
         </Button>
         <Button
-          className="bg-black hover:bg-[#252525] text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2]"
+          className="bg-black hover:bg-[#252525] text-white dark:text-black dark:bg-white dark:hover:bg-[#E2E2E2] px-3"
           onClick={() => compileCode(codingType)}
         >
           Submit

@@ -31,8 +31,8 @@ export function Sidebar({ device }: { device: string }) {
         <Button
           size="icon"
           variant="outline"
-          className={`absolute bottom-2 left-[104px] z-2 bg-transparent border-transparent ${
-            device === "mobile" ? "bottom-4" : "bottom-2"
+          className={`absolute bottom-2 left-2 z-2 bg-transparent border-transparent ${
+            device === "mobile" ? "bottom-4 left-[104px]" : "bottom-2"
           }`}
         >
           <Image

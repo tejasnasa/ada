@@ -12,19 +12,19 @@ export default async function CodeCompilerPage() {
   return (
     <>
       {!isMobile && (
-        <main className="p-4 h-dvh flex dark:bg-black bg-white">
+        <main className="p-4 h-dvh flex dark:bg-[#0A0A0A] bg-white">
           <div className="w-[70%] h-full flex flex-col">
             <EditorDesktop />
           </div>
           <div className="w-[30%]">
-            <InputOutputMobile />
+            <InputOutputDesktop />
           </div>
         </main>
       )}
       {isMobile && (
         <main className="p-2 flex-col dark:bg-[#0A0A0A] bg-white">
           <EditorMobile />
-          <InputOutputDesktop />
+          <InputOutputMobile />
         </main>
       )}
     </>

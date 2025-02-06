@@ -23,8 +23,8 @@ export function DialogDemo({ device }: { device: string }) {
         <Button
           size="icon"
           variant="outline"
-          className={`absolute left-[72px] text-white z-2 bg-transparent border-transparent ${
-            device === "mobile" ? "bottom-4" : "bottom-2"
+          className={`absolute left-12 text-white z-2 bg-transparent border-transparent ${
+            device === "mobile" ? "bottom-4 left-[72px]" : "bottom-2"
           }`}
         >
           <Image src={help} alt="Ada" className="dark:block hidden" />
