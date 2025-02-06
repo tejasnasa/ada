@@ -27,7 +27,13 @@ export default function ThemeChanger() {
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent
+        className={`flex flex-col justify-between ${
+          theme !== "vs" && theme !== "kuroir" && theme !== "solarLight"
+            ? "dark"
+            : undefined
+        }`}
+      >
         <SelectItem value="vs">Light</SelectItem>
         <SelectItem value="customDarkTheme">Dark</SelectItem>
         <SelectItem value="hc-black">High Contrast Dark</SelectItem>

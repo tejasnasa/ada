@@ -5,15 +5,15 @@ import { Button } from "@/components/ui/button";
 import { useCompilerStore } from "@/context/compiler-context";
 import copy from "@/assets/copy.svg";
 import copy2 from "@/assets/copy2.svg";
-import EditorSkeleton from "./editor-skeleton";
+import EditorSkeleton from "@/components/editor-skeleton";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
-import { Sidebar } from "./sidebar";
+import { Sidebar } from "@/components/sidebar";
 import codeTypeArray from "@/lib/data";
 import { initializeTheme } from "@/lib/theme";
-import { DialogDemo } from "./dialog";
+import { DialogDemo } from "@/components/dialog";
 
-export default function EditorBlock() {
+export default function EditorDesktop() {
   const { userCode, setUserCode, compileCode, theme, font, codingType } =
     useCompilerStore();
   const { toast } = useToast();
@@ -81,7 +81,7 @@ export default function EditorBlock() {
         onClick={copyToClipboard}
       >
         <Image src={copy} alt="Copy" className="dark:hidden block" />
-        <Image src={copy2} alt="Copy" className="dark:block hidden"/>
+        <Image src={copy2} alt="Copy" className="dark:block hidden" />
       </Button>
       <Button
         className="absolute bottom-4 right-6 z-10"

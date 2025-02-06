@@ -9,7 +9,7 @@ import { useCompilerStore } from "@/context/compiler-context";
 import codeTypeArray from "@/lib/data";
 
 export default function CodeChanger() {
-  const { codingType, setCodingType, setUserCode } = useCompilerStore();
+  const { codingType, setCodingType, setUserCode, theme } = useCompilerStore();
 
   return (
     <>
@@ -23,7 +23,13 @@ export default function CodeChanger() {
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Theme" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent
+          className={`flex flex-col justify-between ${
+            theme !== "vs" && theme !== "kuroir" && theme !== "solarLight"
+              ? "dark"
+              : undefined
+          }`}
+        >
           <SelectItem value="0">No Loop</SelectItem>
           <SelectItem value="1">Loop</SelectItem>
           <SelectItem value="2">No Loop - With Function</SelectItem>
