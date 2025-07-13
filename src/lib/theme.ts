@@ -32,9 +32,7 @@ export const customDarkTheme: editor.IStandaloneThemeData = {
   },
 };
 
-export const initializeTheme = (
-  monaco: typeof import("monaco-editor/esm/vs/editor/editor.api")
-) => {
+export const initializeTheme = (monaco: typeof import("monaco-editor")) => {
   monaco.editor.defineTheme("customDarkTheme", customDarkTheme);
   monaco.editor.defineTheme("monokai", monokai);
   monaco.editor.defineTheme("cobalt", cobalt);

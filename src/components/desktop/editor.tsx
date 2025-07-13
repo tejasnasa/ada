@@ -12,6 +12,7 @@ import { Sidebar } from "@/components/sidebar";
 import codeTypeArray from "@/lib/data";
 import { initializeTheme } from "@/lib/theme";
 import { DialogDemo } from "@/components/dialog";
+import { initializeShortcutKeys } from "@/lib/shortcut-keys";
 
 export default function EditorDesktop() {
   const { userCode, setUserCode, compileCode, theme, font, codingType } =
@@ -65,6 +66,9 @@ export default function EditorDesktop() {
         onChange={(value) => setUserCode(value || "")}
         beforeMount={(monaco) => {
           initializeTheme(monaco);
+        }}
+        onMount={(editor) => {
+          initializeShortcutKeys(editor, compileCode, codingType);
         }}
       />
       <Sidebar device="desktop" />
