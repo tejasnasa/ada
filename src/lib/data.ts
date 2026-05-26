@@ -1,3 +1,6 @@
+export const pythonDefaultCode = `# Welcome to Ada
+`;
+
 const codeTypeArray = [
   {
     preCode: `

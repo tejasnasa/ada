@@ -9,7 +9,12 @@ import { useCompilerStore } from "@/context/compiler-context";
 import codeTypeArray from "@/lib/data";
 
 export default function CodeChanger() {
-  const { codingType, setCodingType, setUserCode, theme } = useCompilerStore();
+  const { codingType, setCodingType, setUserCode, theme, language } =
+    useCompilerStore();
+
+  if (language !== "cpp") {
+    return null;
+  }
 
   return (
     <>

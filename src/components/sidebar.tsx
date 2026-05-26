@@ -15,6 +15,7 @@ import { Slider } from "@/components/ui/slider";
 import Dropdown from "./themechanger";
 import { useCompilerStore } from "@/context/compiler-context";
 import CodeChanger from "./codechanger";
+import LanguageChanger from "./languagechanger";
 import loop from "@/assets/loop.png";
 import noloop from "@/assets/no-loop.png";
 import noloop2 from "@/assets/no-loop2.png";
@@ -23,7 +24,7 @@ import blank from "@/assets/blank.png";
 import settings2 from "@/assets/settings2.svg";
 
 export function Sidebar({ device }: { device: string }) {
-  const { font, setFont, codingType, theme } = useCompilerStore();
+  const { font, setFont, codingType, theme, language } = useCompilerStore();
 
   return (
     <Sheet>
@@ -80,18 +81,28 @@ export function Sidebar({ device }: { device: string }) {
           </div>
           <div className="grid grid-cols-4 items-center gap-4 mt-1">
             <Label htmlFor="slider" className="text-right">
-              Type
+              Language
             </Label>
-            <CodeChanger />
+            <LanguageChanger />
           </div>
+          {language === "cpp" && (
+            <div className="grid grid-cols-4 items-center gap-4 mt-1">
+              <Label htmlFor="slider" className="text-right">
+                Type
+              </Label>
+              <CodeChanger />
+            </div>
+          )}
         </div>
-        <div className="h-[700px] flex flex-col justify-center">
-          {codingType === 0 && <Image src={noloop} alt="" />}
-          {codingType === 1 && <Image src={loop} alt="" />}
-          {codingType === 2 && <Image src={noloop2} alt="" />}
-          {codingType === 3 && <Image src={loop2} alt="" />}
-          {codingType === 4 && <Image src={blank} alt="" />}
-        </div>
+        {language === "cpp" && (
+          <div className="h-[700px] flex flex-col justify-center">
+            {codingType === 0 && <Image src={noloop} alt="" />}
+            {codingType === 1 && <Image src={loop} alt="" />}
+            {codingType === 2 && <Image src={noloop2} alt="" />}
+            {codingType === 3 && <Image src={loop2} alt="" />}
+            {codingType === 4 && <Image src={blank} alt="" />}
+          </div>
+        )}
 
         <div>
           <SheetFooter className="mt-1">
