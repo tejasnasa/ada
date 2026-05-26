@@ -15,18 +15,27 @@ import { DialogDemo } from "@/components/dialog";
 import { initializeShortcutKeys } from "@/lib/shortcut-keys";
 
 export default function EditorDesktop() {
-  const { userCode, setUserCode, compileCode, theme, font, codingType } =
-    useCompilerStore();
+  const {
+    userCode,
+    setUserCode,
+    compileCode,
+    theme,
+    font,
+    codingType,
+    language,
+  } = useCompilerStore();
   const { toast } = useToast();
 
   const copyToClipboard = () => {
     if (navigator.clipboard && userCode) {
-      navigator.clipboard
-        .writeText(
-          codeTypeArray[codingType].preCode +
+      const content =
+        language === "cpp"
+          ? codeTypeArray[codingType].preCode +
             userCode +
             codeTypeArray[codingType].postCode
-        )
+          : userCode;
+      navigator.clipboard
+        .writeText(content)
         .then(() => {
           toast({
             title: "Code copied",
@@ -59,8 +68,8 @@ export default function EditorDesktop() {
         width="100%"
         height="100%"
         theme={theme}
-        language="cpp"
-        defaultLanguage="cpp"
+        language={language === "cpp" ? "cpp" : "python"}
+        defaultLanguage={language === "cpp" ? "cpp" : "python"}
         value={userCode}
         loading={<EditorSkeleton />}
         onChange={(value) => setUserCode(value || "")}
